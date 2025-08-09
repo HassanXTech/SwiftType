@@ -15,7 +15,6 @@ export const TypingArea: React.FC = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Check for Caps Lock
       if (e.getModifierState && e.getModifierState('CapsLock')) {
         if (!capsLockOn) {
           setCapsLockOn(true);
@@ -28,14 +27,13 @@ export const TypingArea: React.FC = () => {
         }
       }
 
-      // Focus input on any key press (except special keys)
       if (!isCompleted && inputRef.current && !['Tab', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'].includes(e.key)) {
         inputRef.current.focus();
       }
     };
 
     const handleKeyUp = () => {
-      // Key up handler (currently unused)
+
     };
 
     const handleClick = () => {
@@ -55,7 +53,6 @@ export const TypingArea: React.FC = () => {
     };
   }, [isCompleted, capsLockOn]);
 
-  // Timer effect
   useEffect(() => {
     let interval: number | null = null;
 
@@ -70,7 +67,6 @@ export const TypingArea: React.FC = () => {
     };
   }, [isActive, isCompleted]);
 
-  // Reset timer when starting new test
   useEffect(() => {
     if (!isActive && userInput.length === 0) {
       setTimer(0);
@@ -82,9 +78,7 @@ export const TypingArea: React.FC = () => {
 
     const value = e.target.value;
 
-    // Allow typing up to the text length
     if (value.length <= currentText.content.length) {
-      // Play sound for the last typed character
       if (value.length > userInput.length) {
         const lastChar = value[value.length - 1];
         const expectedChar = currentText.content[value.length - 1];
@@ -94,9 +88,7 @@ export const TypingArea: React.FC = () => {
 
       updateInput(value);
 
-      // Check word limit for words mode
       if (settings.mode === 'words') {
-        // Count words more accurately by splitting on whitespace and filtering empty strings
         const wordsTyped = value.trim() ? value.trim().split(/\s+/).filter(word => word.length > 0).length : 0;
         if (wordsTyped >= settings.wordLimit) {
           const { endTest } = useTypingStore.getState();
@@ -114,19 +106,14 @@ export const TypingArea: React.FC = () => {
       let className = '';
 
       if (index < input.length) {
-        // Character has been typed
         if (input[index] === char) {
-          // Correct character
           className = 'text-teal-400';
         } else {
-          // Incorrect character
           className = 'text-red-400 bg-red-400/20';
         }
       } else if (index === input.length) {
-        // Current character to type (cursor position)
         className = 'text-gray-900 bg-teal-400 animate-pulse';
       } else {
-        // Untyped character
         className = 'text-gray-500';
       }
 
@@ -156,27 +143,21 @@ export const TypingArea: React.FC = () => {
 
   const accuracy = calculateRealTimeAccuracy();
 
-  // Calculate real-time WPM
   const calculateRealTimeWPM = () => {
     if (timer <= 0 || userInput.length === 0) return 0;
 
-    // Count correct characters
     const correctChars = userInput.split('').filter((char, index) => char === currentText.content[index]).length;
-
-    // Calculate WPM: (correct characters / 5) / (time in minutes)
     const timeInMinutes = timer / 60;
     const wpm = timeInMinutes > 0 ? (correctChars / 5) / timeInMinutes : 0;
 
     return Math.round(Math.max(0, wpm));
   };
 
-  // Add time limit tracking
   useEffect(() => {
     let timeoutId: number;
 
     if (isActive && settings.mode === 'time') {
       timeoutId = setTimeout(() => {
-        // Auto-end test when time limit is reached
         const { endTest } = useTypingStore.getState();
         endTest();
       }, settings.timeLimit * 1000);
@@ -187,7 +168,6 @@ export const TypingArea: React.FC = () => {
     };
   }, [isActive, settings.mode, settings.timeLimit]);
 
-  // Auto-focus the input when component mounts
   useEffect(() => {
     if (inputRef.current && !isCompleted) {
       inputRef.current.focus();
@@ -196,7 +176,6 @@ export const TypingArea: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Timer/Counter */}
       <div className="text-center mb-8">
         <div className="text-gray-500 text-sm uppercase tracking-wider mb-2">
           {settings.mode === 'time' ? 'TIMER' : settings.mode === 'words' ? 'WORDS' : 'TIMER'}
@@ -212,22 +191,18 @@ export const TypingArea: React.FC = () => {
         </div>
       </div>
 
-      {/* Text Display */}
       <div className="mb-8">
-
         <div
           className="text-center font-mono text-xl leading-relaxed whitespace-pre-wrap break-words overflow-hidden relative p-8"
           style={{ fontSize: `${settings.fontSize}px`, lineHeight: '1.8' }}
         >
           {renderText()}
-          {/* Blinking cursor at the end if all text is typed */}
           {userInput.length === currentText.content.length && (
             <span className="inline-block w-0.5 h-6 bg-teal-400 ml-1 animate-pulse" />
           )}
         </div>
       </div>
 
-      {/* Input Area */}
       <div className="relative">
         <textarea
           ref={inputRef}
@@ -246,7 +221,6 @@ export const TypingArea: React.FC = () => {
           }}
         />
 
-        {/* Focus Indicator */}
         {!isFocused && !isCompleted && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
@@ -255,8 +229,6 @@ export const TypingArea: React.FC = () => {
           </div>
         )}
       </div>
-
-      {/* Start Over Button */}
       <div className="text-center mt-12">
         <button
           onClick={() => window.location.reload()}

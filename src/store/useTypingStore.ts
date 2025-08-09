@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-// Define types inline to avoid import issues
 type Difficulty = 'beginner' | 'intermediate' | 'advanced' | 'expert';
 type TestMode = 'time' | 'words' | 'custom';
 type Theme = 'light' | 'dark' | 'neon' | 'retro';
@@ -74,27 +73,16 @@ interface TestResult {
 }
 
 interface TypingStore {
-  // User state
   user: User | null;
   setUser: (user: User | null) => void;
-  
-  // Game settings
   settings: GameSettings;
   updateSettings: (settings: Partial<GameSettings>) => void;
-  
-  // Typing state
   typingState: TypingState;
   setTypingState: (state: Partial<TypingState>) => void;
   resetTypingState: () => void;
-  
-  // Test results
   testResults: TestResult[];
   addTestResult: (result: TestResult) => void;
-  
-  // Statistics
   calculateStats: (input: string, text: string, startTime: number, endTime: number) => TypingStats;
-  
-  // Actions
   startTest: () => void;
   endTest: () => void;
   updateInput: (input: string) => void;
@@ -156,26 +144,24 @@ export const useTypingStore = create<TypingStore>()(
       resetTypingState: () => set((state) => ({
         typingState: {
           ...defaultTypingState,
-          currentText: state.typingState.currentText, // Keep the current text
+          currentText: state.typingState.currentText,
         }
       })),
-      
+
       testResults: [],
       addTestResult: (result) =>
         set((state) => ({
-          testResults: [result, ...state.testResults].slice(0, 100), // Keep last 100 results
+          testResults: [result, ...state.testResults].slice(0, 100),
         })),
       
       calculateStats: (input, text, startTime, endTime) => {
-        const timeElapsed = (endTime - startTime) / 1000; // in seconds
+        const timeElapsed = (endTime - startTime) / 1000;
         const timeElapsedMinutes = timeElapsed / 60;
 
-        // Count correct and incorrect characters
         let correctCharacters = 0;
         let errors = 0;
         const charactersTyped = input.length;
 
-        // Compare each character typed with the expected character
         for (let i = 0; i < input.length; i++) {
           if (i < text.length && input[i] === text[i]) {
             correctCharacters++;
@@ -184,14 +170,8 @@ export const useTypingStore = create<TypingStore>()(
           }
         }
 
-        // Calculate accuracy: (correct characters / total characters typed) * 100
         const accuracy = charactersTyped > 0 ? (correctCharacters / charactersTyped) * 100 : 100;
-
-        // Calculate WPM: (correct characters / 5) / time in minutes
-        // Standard WPM calculation uses 5 characters per word
         const wpm = timeElapsedMinutes > 0 ? (correctCharacters / 5) / timeElapsedMinutes : 0;
-
-        // Calculate gross WPM (including errors) for comparison
         const grossWpm = timeElapsedMinutes > 0 ? (charactersTyped / 5) / timeElapsedMinutes : 0;
 
         return {

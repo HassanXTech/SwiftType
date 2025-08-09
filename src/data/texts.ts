@@ -1,4 +1,3 @@
-// Define types inline to avoid import issues
 type Difficulty = 'beginner' | 'intermediate' | 'advanced' | 'expert';
 
 interface TypingText {
@@ -12,7 +11,6 @@ interface TypingText {
 }
 
 export const typingTexts: TypingText[] = [
-  // Beginner Level
   {
     id: 'beginner-1',
     content: 'The quick brown fox jumps over the lazy dog. This sentence contains every letter of the alphabet.',
@@ -34,8 +32,6 @@ export const typingTexts: TypingText[] = [
     category: 'educational',
     language: 'en',
   },
-  
-  // Intermediate Level
   {
     id: 'intermediate-1',
     content: 'Technology has revolutionized the way we work, communicate, and live our daily lives. From smartphones to artificial intelligence, innovation continues to shape our future.',
@@ -57,8 +53,6 @@ export const typingTexts: TypingText[] = [
     category: 'environment',
     language: 'en',
   },
-  
-  // Advanced Level
   {
     id: 'advanced-1',
     content: 'Quantum computing represents a paradigm shift in computational capabilities, leveraging quantum mechanical phenomena such as superposition and entanglement to process information in fundamentally different ways than classical computers.',
@@ -80,8 +74,6 @@ export const typingTexts: TypingText[] = [
     category: 'finance',
     language: 'en',
   },
-  
-  // Expert Level
   {
     id: 'expert-1',
     content: 'The epistemological implications of artificial general intelligence necessitate a comprehensive reevaluation of consciousness, cognition, and the fundamental nature of intelligence itself, challenging anthropocentric assumptions about sentience and self-awareness.',
@@ -103,8 +95,6 @@ export const typingTexts: TypingText[] = [
     category: 'philosophy',
     language: 'en',
   },
-  
-  // Programming Texts
   {
     id: 'programming-1',
     content: 'function calculateFibonacci(n) { if (n <= 1) return n; return calculateFibonacci(n - 1) + calculateFibonacci(n - 2); }',

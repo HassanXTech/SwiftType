@@ -1,29 +1,23 @@
-// Keyboard utility functions for SwiftType
-
 export const playKeySound = (isCorrect: boolean, soundEnabled: boolean = true) => {
   if (!soundEnabled) return;
-  
+
   try {
-    // Create audio context for key sounds
     const audioContext = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
-    
+
     oscillator.connect(gainNode);
     gainNode.connect(audioContext.destination);
-    
-    // Different frequencies for correct/incorrect
+
     oscillator.frequency.setValueAtTime(isCorrect ? 800 : 400, audioContext.currentTime);
     oscillator.type = 'sine';
-    
-    // Volume and duration
+
     gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
     gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-    
+
     oscillator.start(audioContext.currentTime);
     oscillator.stop(audioContext.currentTime + 0.1);
   } catch {
-    // Silently fail if audio context is not supported
     console.warn('Audio context not supported');
   }
 };
@@ -77,12 +71,9 @@ export const isSpecialKey = (key: string): boolean => {
 };
 
 export const normalizeKey = (key: string): string => {
-  // Handle special cases
   if (key === 'Enter') return '\n';
   if (key === 'Tab') return '\t';
   if (key === ' ') return ' ';
-  
-  // Return the key as-is for normal characters
   return key;
 };
 
@@ -91,7 +82,6 @@ export const calculateKeyDistance = (key1: string, key2: string): number => {
   let pos1 = { row: -1, col: -1 };
   let pos2 = { row: -1, col: -1 };
   
-  // Find positions of both keys
   for (let row = 0; row < layout.length; row++) {
     for (let col = 0; col < layout[row].length; col++) {
       if (layout[row][col] === key1.toLowerCase()) {
@@ -102,8 +92,7 @@ export const calculateKeyDistance = (key1: string, key2: string): number => {
       }
     }
   }
-  
-  // Calculate Euclidean distance
+
   if (pos1.row !== -1 && pos2.row !== -1) {
     return Math.sqrt(
       Math.pow(pos2.row - pos1.row, 2) + Math.pow(pos2.col - pos1.col, 2)
@@ -121,15 +110,12 @@ export const getTypingDifficulty = (text: string): number => {
     const current = chars[i];
     const next = chars[i + 1];
     
-    // Add difficulty based on key distance
     difficulty += calculateKeyDistance(current, next);
-    
-    // Add difficulty for special characters
+
     if (!/[a-z0-9\s]/.test(current)) {
       difficulty += 2;
     }
-    
-    // Add difficulty for same finger usage
+
     if (getFingerForKey(current) === getFingerForKey(next) && current !== next) {
       difficulty += 1;
     }
