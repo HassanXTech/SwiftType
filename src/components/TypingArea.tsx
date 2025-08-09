@@ -57,7 +57,7 @@ export const TypingArea: React.FC = () => {
 
   // Timer effect
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
+    let interval: number | null = null;
 
     if (isActive && !isCompleted) {
       interval = setInterval(() => {
@@ -172,7 +172,7 @@ export const TypingArea: React.FC = () => {
 
   // Add time limit tracking
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: number;
 
     if (isActive && settings.mode === 'time') {
       timeoutId = setTimeout(() => {

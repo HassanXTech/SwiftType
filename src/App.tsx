@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useTypingStore } from './store/useTypingStore';
 import { Header } from './components/Header';

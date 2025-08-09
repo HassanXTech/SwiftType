@@ -7,7 +7,7 @@ interface GameCompleteProps {
 }
 
 export const GameComplete: React.FC<GameCompleteProps> = ({ onNewTest }) => {
-  const { typingState } = useTypingStore();
+  const { typingState, user, settings } = useTypingStore();
   const { stats } = typingState;
 
   const getPerformanceLevel = (wpm: number, accuracy: number) => {
