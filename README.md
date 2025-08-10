@@ -1,4 +1,6 @@
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/519a8a57-962f-4d33-a5cf-9e8064c97459" /># SwiftType - Get Better at Typing!
+![Uploading image.png…]()
+
+# SwiftType - Get Better at Typing!
 
 SwiftType is a web app that helps you get faster and more accurate at typing.
 
