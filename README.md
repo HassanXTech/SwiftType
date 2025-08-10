@@ -1,4 +1,4 @@
-![Uploading image.png…]()
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/69029861-14e8-4182-9209-e024fda54f53" />
 
 # SwiftType - Get Better at Typing!
 
