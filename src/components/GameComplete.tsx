@@ -137,7 +137,7 @@ export const GameComplete: React.FC<GameCompleteProps> = ({ onNewTest }) => {
               rel="noopener noreferrer"
               className="text-teal-400 hover:text-teal-300 transition-colors font-medium"
             >
-              Hassan XLY
+              Hassan Tech
             </a>
             {' '} • {' '}
             <a

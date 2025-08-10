@@ -15,7 +15,7 @@ export const Header: React.FC<HeaderProps> = ({ onNewTest }) => {
       <div className="flex items-center space-x-3">
         <h1 className="text-xl font-medium text-white">SwiftType</h1>
         <span className="text-sm text-gray-500">Practice Mode</span>
-        <span className="text-xs text-gray-600">by Hassan XLY</span>
+        <span className="text-xs text-gray-600">by Hassan Tech</span>
       </div>
 
       {/* Controls */}

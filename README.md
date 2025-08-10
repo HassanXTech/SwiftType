@@ -46,4 +46,4 @@ To run the project in your local environment, follow these steps:
 
 ---
 
-Made by [Hassan XLY](https://github.com/AnomusLY)
+Made by [Hassan Tech](https://github.com/AnomusLY)
