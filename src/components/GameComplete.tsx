@@ -132,7 +132,7 @@ export const GameComplete: React.FC<GameCompleteProps> = ({ onNewTest }) => {
           <p>
             Made with ❤️ by{' '}
             <a
-              href="https://github.com/AnomusLY"
+              href="https://github.com/HassanXTech"
               target="_blank"
               rel="noopener noreferrer"
               className="text-teal-400 hover:text-teal-300 transition-colors font-medium"
@@ -141,7 +141,7 @@ export const GameComplete: React.FC<GameCompleteProps> = ({ onNewTest }) => {
             </a>
             {' '} • {' '}
             <a
-              href="https://github.com/AnomusLY/SwiftType"
+              href="https://github.com/HassanXTech/SwiftType"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-gray-300 transition-colors"

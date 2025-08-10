@@ -245,9 +245,9 @@ export const TypingArea: React.FC = () => {
           <div className="flex items-center space-x-4">
             <span>© SwiftType</span>
             <span>•</span>
-            <span><a href="https://github.com/AnomusLY/SwiftType" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 transition-colors">Source Code</a></span>
+            <span><a href="https://github.com/HassanXTech/SwiftType" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 transition-colors">Source Code</a></span>
             <span>•</span>
-            <span>Made by <a href="https://github.com/AnomusLY" target="_blank" rel="noopener noreferrer" className="text-purple-500 hover:text-purple-400 transition-colors">Hassan Tech</a></span>
+            <span>Made by <a href="https://github.com/HassanXTech" target="_blank" rel="noopener noreferrer" className="text-purple-500 hover:text-purple-400 transition-colors">Hassan Tech</a></span>
           </div>
           <div className="flex items-center space-x-4">
             <span>WPM: {calculateRealTimeWPM()}</span>
