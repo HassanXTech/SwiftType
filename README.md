@@ -1,4 +1,4 @@
-# SwiftType - Get Better at Typing!
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/519a8a57-962f-4d33-a5cf-9e8064c97459" /># SwiftType - Get Better at Typing!
 
 SwiftType is a web app that helps you get faster and more accurate at typing.
 
@@ -43,6 +43,11 @@ To run the project in your local environment, follow these steps:
 ## 🐞 Issues
 
 - Right now, it doesn't work well on phones.
+
+## 📸 Preview
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/7f9129aa-89c4-4b74-b064-82b4cc1dd049" />
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/9baefbe0-dc0c-408a-8557-c08fcaccc64d" />
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/b3ca854a-d18e-463c-8877-2780a0fa2e76" />
 
 ---
 
